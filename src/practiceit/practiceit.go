@@ -1,10 +1,7 @@
 package main
 
 import (
-	"database/sql"
-	"fmt"
-	"log"
-
+	"example.com/backend"
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -65,21 +62,26 @@ func main() {
 
 	// Connecting to DB
 
-	db, err := sql.Open("sqlite3", "../../practiceit.db")
-	if err != nil {
-		log.Fatal(err.Error())
-	}
+	// db, err := sql.Open("sqlite3", "../../practiceit.db")
+	// if err != nil {
+	// 	log.Fatal(err.Error())
+	// }
 
-	rows, err := db.Query("SELECT id, name, inventory, price FROM products")
-	if err != nil {
-		log.Fatal(err.Error())
-	}
+	// rows, err := db.Query("SELECT id, name, inventory, price FROM products")
+	// if err != nil {
+	// 	log.Fatal(err.Error())
+	// }
 
-	defer rows.Close()
+	// defer rows.Close()
 
-	for rows.Next() {
-		var p Product
-		rows.Scan(&p.id, &p.name, &p.inventory, &p.price)
-		fmt.Println("Product : ", p.id, " ", p.name, " ", p.inventory, " ", p.price)
-	}
+	// for rows.Next() {
+	// 	var p Product
+	// 	rows.Scan(&p.id, &p.name, &p.inventory, &p.price)
+	// 	fmt.Println("Product : ", p.id, " ", p.name, " ", p.inventory, " ", p.price)
+	// }
+
+	a := backend.App{}
+	a.Port = ":9003"
+	a.Initialize()
+	a.Run()
 }
